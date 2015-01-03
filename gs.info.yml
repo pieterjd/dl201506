@@ -1,0 +1,5 @@
+name: Get started
+description: This is the Drupal 8 port of the getting started module, starring in my Drupalcamp Gent 2012 session
+core: 8.x
+type: module
+package: custom
