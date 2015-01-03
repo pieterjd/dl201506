@@ -35,7 +35,12 @@ class ReverseForm extends FormBase{
   return $form;
  }
  public function validateForm(array &$form, FormStateInterface $form_state){
-   
+   //returns noting
+   $text = $form_state->getValue('inputtext');
+   if(strlen($text)<6){
+    //it is to short
+    $form_state->setErrorByName('inputtext',t('too short'));
+   }
  }
  public function submitForm(array &$form, FormStateInterface $form_state){
  return parent::submitForm($form,$form_state);
