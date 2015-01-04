@@ -18,6 +18,8 @@
  use Drupal\block\Annotation\Block;
  use Drupal\Core\Annotation\Translation;
 
+ //for the configuration form
+ use Drupal\Core\Form\FormStateInterface;
  //request informartion
 // use Symfony\Component\HttpFoundation\Request;
  
@@ -34,11 +36,33 @@
   //only implement build function returning render array
   public function build(){
     $url = \Drupal::request()->getUri();
+    $size = $this->configuration['size'];
     $block['image'] = array(
       '#theme' => 'image',
-      '#uri' => "http://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=$url",
+      '#uri' => "http://chart.googleapis.com/chart?chs=$size&cht=qr&chl=$url",
     );
     return $block;
   }
- }
+  //options for the block
+  public function blockForm($form, FormStateInterface $form_state) {
+   $form['size'] = array(
+    '#type' => 'select',
+    '#title' => t('Size'),
+    '#options' => array(
+      '100x100' => t('Small'),
+      '150x150' => t('Medium'),
+      '200x200' => t('Large'),
+     ),
+     '#default_value' => $this->configuration['size'],
+     '#description' => t('The size of the QR code'),
+   );
+   return $form;
+  }
+  //process configuration form
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    //store size in the configuration info of this block
+    $this->configuration['size'] = $form_state->getValue('size'); 
+  }
+}
+ 
  
