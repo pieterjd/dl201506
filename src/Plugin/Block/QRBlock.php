@@ -18,6 +18,8 @@
  use Drupal\block\Annotation\Block;
  use Drupal\Core\Annotation\Translation;
 
+ //request informartion
+// use Symfony\Component\HttpFoundation\Request;
  
  //tell Drupal there is a new block on the ... block :) using annotations
  //id is the machinename of the block
@@ -31,10 +33,12 @@
  class QRBlock extends BlockBase{
   //only implement build function returning render array
   public function build(){
-    
-    return array(
-      '#markup' => "QR Block"
+    $url = \Drupal::request()->getUri();
+    $block['image'] = array(
+      '#theme' => 'image',
+      '#uri' => "http://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=$url",
     );
+    return $block;
   }
  }
  
