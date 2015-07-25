@@ -8,7 +8,7 @@ class MUService implements MUServiceInterface{
   private $meetup;
   public function __construct(){
     $this->meetup = new Meetup(array(
-      'key' =>'515d73227b143810c18507312762f24',
+      'key' =>'insert your API Key here!',
       )
     ); 
   }
