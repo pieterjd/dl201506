@@ -1,0 +1,5 @@
+name: Drupaleuven June 2015 - Services
+description: This is an example implementation of the exercise at the end of the presentation in the June 2015 meeting of Drupaleuven. The idea is to write a service that returns a list of upcoming events, a block uses this service to display these events.
+core: 8.x
+type: module
+package: custom

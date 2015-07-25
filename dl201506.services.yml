@@ -1,0 +1,3 @@
+services:
+  dl201506_muservice:
+    class: Drupal\dl201506\MUService\MUService
